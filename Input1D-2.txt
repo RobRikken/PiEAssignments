@@ -1,0 +1,10 @@
+% column 1: initial x position
+% column 2: initial x velocity
+% column 3: mass
+-10.0	1.0000	1.0000
+0.0	0.0	1.0000
+2.0	0.0	1.0000
+4.0	0.0	1.0000
+6.0	0.0	1.0000
+8.0	0.0	1.0000
+10.0	0.0	1.0000

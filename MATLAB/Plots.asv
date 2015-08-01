@@ -1,0 +1,7 @@
+%Plot of the potential between two particles
+ParticleDistances = 0.88 : 0.0001 : 3; % started at 0.88 because of plot size
+Sigma = 1;
+Epsilon = 1;
+[ PotentialV, Repulsion, Attraction ] = LennardJonesPotential( Epsilon, Sigma, ParticleDistances );
+plot(ParticleDistances, PotentialV, ParticleDistances, Repulsion, ParticleDistances, Attraction);
+
