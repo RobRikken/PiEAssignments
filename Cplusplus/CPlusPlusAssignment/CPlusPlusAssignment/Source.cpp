@@ -18,13 +18,13 @@ double VectorDivision(std::vector<int> VectorToBeDivided);
 
 
 int main() {
-	//Excersize 1, prime numbers
+	//Excercise 1, prime numbers
 	std::vector<int> PrimeNumbers;
 
 	PrimeNumbers = PrimeNumberCalculator();
 	SavePrimeNumbersToFile(PrimeNumbers);
 
-	//Excersize 2, Reverse Polish Notation
+	//Excercise 2, Reverse Polish Notation
 	//Question 1
 	std::string RPNString = InputRPNString();
 	int RPNResult = ParseRPNString(RPNString);
@@ -38,7 +38,26 @@ int main() {
 		std::cout << RPNLineResult;
 	}
 	
+	//Excercise 3
+	ReadODMatrix()
+	CalculateRoutes()
+	WriteToDisk()
 	return EXIT_SUCCESS;
+}
+
+int array ReadODMatrix() {
+	int ODMatrix[10][10];
+	std::ifstream CitiesFile("cities10.data");
+	int RouteLength;
+
+	int i = 0, j = 0;
+	while (CitiesFile >> RouteLength) {
+		ODMatrix[i][j] = RouteLength;
+		if (i % 10 == 0) {
+			j++;
+		}
+		i++;
+	}
 }
 
 std::vector<std::string> ReadStringsFromFile() {
