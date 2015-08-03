@@ -1,19 +1,114 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <cstring>
+#include <sstream>
 #include <cmath>
+#include <exception>
 
+//Functions for excersize 1
 std::vector<int> PrimeNumberCalculator();
 void SavePrimeNumbersToFile(std::vector<int> PrimeNumberList);
+//Functions for excersize 2
+int CheckForOperatorAndCalculate(char Operator, std::vector<int> NumberVector);
+
+double VectorSum(std::vector<int> VectorToBeSummed);
+double VectorDifference(std::vector<int> VectorToBeDivided);
+double VectorMultiplication(std::vector<int> VectorToBeMultiplicated);
+double VectorDivision(std::vector<int> VectorToBeDivided);
+
 
 int main() {
+	//Excersize 1, prime numbers
 	std::vector<int> PrimeNumbers;
 
 	PrimeNumbers = PrimeNumberCalculator();
 	SavePrimeNumbersToFile(PrimeNumbers);
 
+	//Excersize 2, Reverse Polish Notation
+	std::string RPNString = InputRPNString()
+
+
 	return EXIT_SUCCESS;
+}
+
+std::string InputRPNString() {
+	std::string RPNUserInput;
+	std::cout << "Please input your calculation in RPN (Reverse Polish Notation)." << endl;
+	std::cin >> RPNUserInput;
+}
+
+void ParseRPNString(std::string RPNString) {
+	std::string::size_type  PreviousPosition;
+	std::string::size_type  Position;
+	std::string TemporalString;
+	do{
+		Position = RPNString.find_first_of(' ', PreviousPosition);
+		TemporalString = RPNString.substr(PreviousPosition, Position);
+		if ((iss >> num).fail()) {
+			//If convert to number fails, call operator.
+		}
+		else {
+			//Add the number to the vector.
+		}
+		
+		PreviousPosition = Position;
+	}while(Position != std::string::npos)
+
+
+}
+
+int CheckForOperatorAndCalculate(char Operator, std::vector<int> NumberVector) {
+	int Result;
+	switch ( Operator )
+	{
+	case '+': Result = VectorSum(NumberVector);
+		break;
+	case '-': Result = VectorDifference(NumberVector);
+		break;
+	case '*': Result = VectorMultiplication(NumberVector);
+		break;
+	case '/': Result = VectorDivision(NumberVector);
+		break;
+	default:
+		std::cerr << "Undefined operator used in RPN calculaton!" << std::endl;
+	} 
+	return Result;
+}
+
+double VectorSum(std::vector<int> VectorToBeSummed) {
+	int SumOfVector = 0;
+	for each (int Number in VectorToBeSummed)
+	{
+		SumOfVector += Number;
+	}
+	return SumOfVector;
+}
+
+double VectorDifference(std::vector<int> VectorToBeDivided) {
+	int DifferenceOfVector = 0;
+	for each (int Number in VectorToBeDivided)
+	{
+		DifferenceOfVector -= Number;
+	}
+	return DifferenceOfVector;
+}
+
+double VectorMultiplication(std::vector<int> VectorToBeMultiplicated) {
+	int MultiplicationOfVector = 0;
+	for each (int Number in VectorToBeMultiplicated)
+	{
+		MultiplicationOfVector *= Number;
+	}
+	return MultiplicationOfVector;
+}
+
+double VectorDivision(std::vector<int> VectorToBeDivided) {
+	int DivisionOfVector = 0;
+	for each (int Number in VectorToBeDivided)
+	{
+		DivisionOfVector /= Number;
+	}
+	return DivisionOfVector;
 }
 
 void SavePrimeNumbersToFile(std::vector<int> PrimeNumberList) {
@@ -74,4 +169,4 @@ std::vector<int> PrimeNumberCalculator() {
 	}
 
 	return PrimeNumberList;
-}
+}8
