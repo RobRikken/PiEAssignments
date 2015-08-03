@@ -25,10 +25,32 @@ int main() {
 	SavePrimeNumbersToFile(PrimeNumbers);
 
 	//Excersize 2, Reverse Polish Notation
-	std::string RPNString = InputRPNString()
-
-
+	//Question 1
+	std::string RPNString = InputRPNString();
+	int RPNResult = ParseRPNString(RPNString);
+	std::cout << RPNResult;
+	
+	//Question 2
+	std::vector<std::string> RPNStringFile = ReadStringsFromFile();
+	for each (std::string FileLine in RPNStringFile)
+	{
+		int RPNLineResult = ParseRPNString(FileLine);
+		std::cout << RPNLineResult;
+	}
+	
 	return EXIT_SUCCESS;
+}
+
+std::vector<std::string> ReadStringsFromFile() {
+	std::vector<std::string> LoadedStrings;
+	std::ifstream LinesFile ("RPNLines.txt");
+	std::string line;
+	
+	int i = 0;
+	while (std::getline(LinesFile, line)) {
+		std::stringstream stringLine(line);
+		LoadedStrings[i] = stringLine.str();
+	}
 }
 
 std::string InputRPNString() {
@@ -37,24 +59,30 @@ std::string InputRPNString() {
 	std::cin >> RPNUserInput;
 }
 
-void ParseRPNString(std::string RPNString) {
-	std::string::size_type  PreviousPosition;
-	std::string::size_type  Position;
-	std::string TemporalString;
-	do{
+int ParseRPNString(std::string RPNString) {
+	std::string::size_type  PreviousPosition, Position;
+	int num = 0, Result;
+	std::vector<int> NumberVector;
+	char Operator;
+
+ 	do{
 		Position = RPNString.find_first_of(' ', PreviousPosition);
-		TemporalString = RPNString.substr(PreviousPosition, Position);
-		if ((iss >> num).fail()) {
-			//If convert to number fails, call operator.
+		std::string TemporalString = RPNString.substr(PreviousPosition, Position);
+		std::istringstream TemporalInt(TemporalString);
+
+		if ((TemporalInt >> num).fail()) {
+			Operator = TemporalString[0];
+			Result = CheckForOperatorAndCalculate(Operator, NumberVector);
+			NumberVector.clear();
+			NumberVector.push_back (Result);
 		}
 		else {
-			//Add the number to the vector.
+			NumberVector.push_back (num);
 		}
-		
 		PreviousPosition = Position;
-	}while(Position != std::string::npos)
+	} while (Position != std::string::npos);
 
-
+	return NumberVector[0];
 }
 
 int CheckForOperatorAndCalculate(char Operator, std::vector<int> NumberVector) {
